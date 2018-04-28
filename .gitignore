@@ -1,2 +1,4 @@
 .env/
 .vscode/
+.front/node_modules/
+.dist/

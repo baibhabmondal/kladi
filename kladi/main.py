@@ -9,7 +9,17 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'gif', 'jpeg', 'mp4', 'mkv
 app = Flask(__name__, 
             static_folder = './dist/static', 
             template_folder = './dist') 
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+
+def catch_all(path):
+    return render_template("index.html")
+
+def index():
+    return render_template("index.html")
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -23,5 +33,6 @@ def upload():
         return 'OK'
     else
         return 'FAIL'
+
 
 app.run()

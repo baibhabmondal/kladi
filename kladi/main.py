@@ -2,11 +2,13 @@
 import os
 import shutil
 import requests
-from flask import Flask, render_template, request
+import redis
+from flask import Flask, render_template, request, abort
 from werkzeug.utils import secure_filename
 from flask_uploads import *
 
-
+# change the url of redis db
+r = redis.Redis('localhost')
 app = Flask(__name__, 
             static_folder = '../dist/static', 
             template_folder = '../dist') 
@@ -36,7 +38,10 @@ def upload():
 
 @app.route('/api/nodes/<node_name>')
 def is_node(node_name):
-
+    if r.get(node_name):
+        return r.get(node_name)
+    else:
+        abort(404)
 
 
 if __name__ == '__main__':

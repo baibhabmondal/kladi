@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import shutil
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 from flask_uploads import *
@@ -9,6 +10,7 @@ app = Flask(__name__,
             static_folder = '../dist/static', 
             template_folder = '../dist') 
 app.config['UPLOADS_DEFAULT_DEST'] = app.root_path
+UPLOAD_FOLDER = '../dist/uploads'
 files = UploadSet('files', ('txt', 'pdf', 'png', 'jpg', 'gif', 'jpeg', 'mp4', 'mkv', 'webm', 'tex'))
 configure_uploads(app, files)
 
@@ -25,8 +27,9 @@ def index():
 @app.route('/api/upload', methods = ['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        f = request.files['file']
         files.save(request.files['file'])
+        print(os.getcwd())
+        shutil.move('kladi/files', 'dist/uploads') 
         return 'OK'
 
 if __name__ == '__main__':

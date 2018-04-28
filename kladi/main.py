@@ -58,7 +58,6 @@ def fetch_links():
     a = []
     for i in r.keys():
         a.append(i.decode('utf-8'))
-    print(a)
     return str(a)
 
 

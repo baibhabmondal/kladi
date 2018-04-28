@@ -114,10 +114,10 @@
       axios.get(`http://localhost:5000/api/nodes/links`)
       .then(response=>{
       //  this.headings.title=response.data;
-      console.log(response.data)
-    
-      })
-      
+      console.log(typeof(response.data))
+     var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
+     console.log(array[0])
+            })
     }
     }
   

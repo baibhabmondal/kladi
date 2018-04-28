@@ -3,7 +3,7 @@
     <v-container>
       <v-layout row wrap>
         <v-flex>
-          <h2>Physics</h2>
+          <h2>Physics</h2>  
         </v-flex>
       </v-layout>
       <v-layout row wrap>

@@ -2,6 +2,7 @@
 import os
 from flask import Flask, render_template
 from werkzeug.utils import secure_filename
+from pymongo import MongoClient
 
 UPLOAD_FOLDER = '/upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'gif', 'jpeg', 'mp4', 'mkv', 'webm', 'tex'])
@@ -11,6 +12,9 @@ app = Flask(__name__,
             template_folder = '../dist') 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+Client = MongoClient()
+db = Client["kladi"]
+data = db["data"]
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -29,6 +33,7 @@ def allowed_file(filename):
 def upload():
     if request.method == 'POST':
         f = request.files['file']
+        data.insert_one(f)
         f.save(secure_filename(f.filename))
         return 'OK'
     else:

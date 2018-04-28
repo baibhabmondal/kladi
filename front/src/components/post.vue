@@ -25,11 +25,11 @@
 
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
+    <!-- <v-layout row wrap>
        <v-flex offset-lg3 lg6>
           <v-text-field  v-model="caption" label="CAPTION" ></v-text-field>
        </v-flex>
-    </v-layout>
+    </v-layout> -->
     <v-layout row wrap>
        <v-flex offset-lg3 lg6>
         <v-text-field  v-model="des" label="DESCRIPTION" multi-line></v-text-field>
@@ -121,7 +121,7 @@
 
         this.attachments = {
           files: this.files,
-          caption: this.caption,
+          
           des: this.des,
           tags: this.tags
         }

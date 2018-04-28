@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import shutil
+import requests
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 from flask_uploads import *
@@ -31,6 +32,12 @@ def upload():
         print(os.getcwd())
         shutil.move('kladi/files', 'dist/uploads') 
         return 'OK'
+
+
+@app.route('/api/nodes/<node_name>')
+def is_node(node_name):
+
+
 
 if __name__ == '__main__':
     app.run(debug = True)

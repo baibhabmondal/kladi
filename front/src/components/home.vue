@@ -88,22 +88,22 @@
   headings:[
        {
         image1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
-         title: 'PHYSICS',
+         title: 'SCIENCE',
          url:''
        },
        {
          image1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
-         title: 'CRICKET',
+         title: 'POLITICS',
         url: ''
        },
        {
         image1:'https://beta.techcrunch.com/wp-content/uploads/2017/10/explore-feed_preview.jpeg?w=680',
-         title: 'SPACE',
+         title: 'SCIENCE',
           url: ''
        },
          {
             image1: 'http://firedove.tech/wp-content/uploads/2017/08/cropped-christopher-gower-291246.jpg',
-            title: 'JAVA  ',
+            title: 'POLITICS  ',
             url: ''
           }
       ]

@@ -1,8 +1,10 @@
 <template>
+
   <div>
     <v-toolbar class="toolbar">
 <img src="https://thelogo.shop/wp-content/uploads/2016/12/02-Letter-K.png">
       <v-toolbar-title class="title">KLADI</v-toolbar-title>
+      
       <v-spacer></v-spacer>
       <router-link to="/post">
       <v-btn icon >

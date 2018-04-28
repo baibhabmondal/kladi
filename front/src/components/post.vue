@@ -102,7 +102,7 @@
 
 
         //post request to icy's node on cloud 
-        axios.post('http://jsonplaceholder.typicode.com/posts', this.attachments)
+        axios.post('http://localhost:5000/api/upload', this.attachments)
         .then(response => {
           console.log(response)
         })

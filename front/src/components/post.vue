@@ -63,6 +63,8 @@
         des: "",
         files: null,
         chips: "",
+        errors: [],
+        posts: null,
          
          tags: [],
          items: [
@@ -91,6 +93,7 @@
 
       }
     },
+    
 
     methods: {
       
@@ -145,6 +148,18 @@
       }
 
     },
+    created() {
+        axios.get(`http://jsonplaceholder.typicode.com/posts`)
+          .then(response => {
+            // JSON responses are automatically parsed.
+            this.posts = response.data;
+            console.log(this.posts)
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      }
+    
   
   }
 

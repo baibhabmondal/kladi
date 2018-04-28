@@ -22,15 +22,11 @@ def catch_all(path):
 def index():
     return render_template("index.html")
 
-def allowed_file(filename):
-    return '.' in filename and \
-            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 @app.route('/api/upload', methods = ['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))
+        files.save(request.files['file'])
         return 'OK'
 
 if __name__ == '__main__':

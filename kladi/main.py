@@ -23,7 +23,7 @@ def index():
 
 def allowed_file(filename):
     return '.' in filename and \
-            filename.rsplit('.'. 1)[1].lower() in ALLOWED_EXTENSIONS
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/api/upload')
 def upload():
@@ -31,7 +31,7 @@ def upload():
         f = request.files['file']
         f.save(secure_filename(f.filename))
         return 'OK'
-    else
+    else:
         return 'FAIL'
 
 

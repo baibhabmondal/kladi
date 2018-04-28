@@ -7,8 +7,8 @@ UPLOAD_FOLDER = '/upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'gif', 'jpeg', 'mp4', 'mkv', 'webm', 'tex'])
 
 app = Flask(__name__, 
-            static_folder = './dist/static', 
-            template_folder = './dist') 
+            static_folder = '../dist/static', 
+            template_folder = '../dist') 
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 

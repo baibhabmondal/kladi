@@ -1,14 +1,155 @@
 <template>
-  <v-app>
-      <h1>HOME PAGE</h1>
-      Cupidatat veniam reprehenderit enim laboris sint. Laborum proident proident esse do consectetur aliqua magna eu reprehenderit velit. Culpa sint dolor commodo irure culpa commodo. Pariatur incididunt ullamco aliqua tempor ut sunt aliquip occaecat ipsum. Ex ipsum officia ad magna dolor aliqua dolor occaecat ut commodo in commodo irure ut. Eu ex velit in culpa commodo reprehenderit et amet amet consectetur non nostrud sint enim.
-      Cupidatat veniam reprehenderit enim laboris sint. Laborum proident proident esse do consectetur aliqua magna eu reprehenderit velit. Culpa sint dolor commodo irure culpa commodo. Pariatur incididunt ullamco aliqua tempor ut sunt aliquip occaecat ipsum. Ex ipsum officia ad magna dolor aliqua dolor occaecat ut commodo in commodo irure ut. Eu ex velit in culpa commodo reprehenderit et amet amet consectetur non nostrud sint enim.
-  </v-app>
+<v-app>
+      <v-container fluid grid-list-lg>
+        <v-layout row wrap>
+          <v-flex lg5 offset-lg4 text-xs-left>
+            
+           <div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+            
+          </v-flex>
+        </v-layout>
+      <v-layout row wrap>
+        <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
+          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+            <v-container fluid grid-list-lg>
+              <v-layout row>
+                <v-flex xs12>
+                  <div style="padding:30px">
+                    
+                    <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                    <div>{{ heading.description }}</div>
+                  </div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
+
+        </v-flex>
+
+      </v-layout>
+        
+        <v-layout row wrap >
+          <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4 >
+            <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+              <v-container fluid grid-list-lg>
+                <v-layout row>
+                  <v-flex xs12>
+                    <div style="padding:30px;">
+                      
+                      <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                      <div>{{ heading.description }}</div>
+                    </div>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card>
+
+          </v-flex>
+
+        </v-layout>
+     
+      <v-layout row wrap>
+        <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
+          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+            <v-container fluid grid-list-lg>
+              <v-layout row>
+                <v-flex xs12>
+                  <div style="padding:30px;">
+
+                    <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                    <div>{{ heading.description }}</div>
+                  </div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
+
+        </v-flex>
+
+      </v-layout>
+        
+      </v-container>
+     
+</v-app>
 </template>
 
 <script>
-export default {
-  name:'home'
-}
+  import axios from 'axios'
+  export default {
+    data() {
+      return {
+  headings:[
+       {
+        url1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
+         title: 'PHYSICS',
+         description:'Latest topics are covered'
+       },
+       {
+         url1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
+         title: 'CRICKET',
+         description: 'Latest topics are covered'
+       },
+       {
+        url1:'https://beta.techcrunch.com/wp-content/uploads/2017/10/explore-feed_preview.jpeg?w=680',
+         title: 'SPACE',
+          description: 'Latest topics are covered'
+       },
+         {
+            url1: 'http://firedove.tech/wp-content/uploads/2017/08/cropped-christopher-gower-291246.jpg',
+            title: 'JAVA  ',
+            description: 'Latest topics are covered'
+          }
+      ]
+      }
+    },
+   created(){
+      axios.get(`http://jsonplaceholder.typicode.com/posts`)
+      .then(response=>{
+        this.headings.title=response.data;
+        console.log(this.headings.title)
+    
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    }
+    }
+  
 </script>
+<style scoped>
+a{
+  text-decoration:none;
+  color:white;
+}
+.white--text{
+  background-color:#006064;
+  font-family: 'Vollkorn', serif;
+  border-radius:7px;
+}
+.headline1{
+  font-size:40px;
+
+}
+
+.search{
+  border:2px solid #595961;
+  border-radius:25px;
+  padding:10px;
+  
+}
+
+
+.searchTerm {
+  
+  width: 95%;
+  
+}
+</style>
 

@@ -42,6 +42,30 @@
       
        </v-flex>
     </v-layout>
+    <v-layout row wrap mt-3>
+      <v-flex offset-lg3 lg1>
+        <input type="radio" name="profile" value="true" v-model="profile">
+      </v-flex>
+      <v-flex lg4>
+        <p>Upload Anonymously</p>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap mt-2>
+      <v-flex offset-lg3 lg1>
+        <input type="radio" name="profile"  @change="profile=!profile">
+      </v-flex>
+      <v-flex lg4>
+        <p>Get Credits</p>
+      </v-flex>
+    </v-layout>
+      <v-layout row wrap mt-2 v-if="!profile">
+        <v-flex offset-lg3 lg6>
+        <v-text-field label="Profile Link" v-model="profileLink">
+
+        </v-text-field>
+        </v-flex>
+       
+      </v-layout>
     <v-layout row wrap>
       <v-flex offset-lg3 lg6>
       <v-btn raised class="button" style="background:#666; color: white;" @click="submit">SUBMIT</v-btn>
@@ -59,6 +83,8 @@
     name: 'post',
     data () {
       return {
+        profile: true,
+        profileLink: "",
         caption: "",
         des: "",
         files: null,
@@ -124,10 +150,12 @@
 
         this.attachments = {
           files: this.files,
+          profile: this.profileLink,
           
           des: this.des,
           tags: this.tags
         }
+        console.log(this.attachments)
 
         let data = new FormData();
         // console.log(this.attachments)
@@ -139,7 +167,7 @@
               console.log(data)
 
         //post request to icy's node on cloud 
-        axios.post('http://jsonplaceholder.typicode.com/posts', data)
+        axios.post('http://localhost:5000/api/upload', data)
         .then(response => {
           console.log(response)
         })
@@ -173,32 +201,5 @@
   
   }
 
-  .dropbox {
-    outline: 2px dashed grey; /* the dash box */
-    outline-offset: -10px;
-    background: lightcyan;
-    color: dimgray;
-    padding: 10px 10px;
-    min-height: 200px; /* minimum height */
-    position: relative;
-    cursor: pointer;
-  }
-/* 
-  .input-file {
-    opacity: 0;
-    width: 100%;
-    height: 200px;
-    position: absolute;
-    cursor: pointer;
-  } */
-
-  .dropbox:hover {
-    background: lightblue; /* when mouse over to the drop zone, change color */
-  }
-
-  .dropbox p {
-    font-size: 1.2em;
-    text-align: center;
-    padding: 50px 0;
-  }
+  
 </style>

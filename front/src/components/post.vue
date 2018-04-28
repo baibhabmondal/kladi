@@ -17,7 +17,7 @@
 
     </v-layout>
     <v-layout row wrap>
-      <v-flex offset-lg3>
+      <v-flex offset-lg3 lg6>
         <div v-if="flag">
           <span>{{ files.name + ' (' + Number((files.size / 1024 / 1024).toFixed(1)) + 'MB)'}}</span>
           <span @click="removeAttachment($event)"><button>Remove</button></span>
@@ -37,7 +37,13 @@
        </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex offset-lg3 lg3>
+       <v-flex offset-lg3 lg6>
+        <v-select :items="items" no-data-text="No nodes" hint="Tags (max 3)" persistent-hint ref="tags" v-model="chips" autocomplete chips clearable multiple deletable-chips hide-selected>TAGS</v-select>
+      
+       </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex offset-lg3 lg6>
       <v-btn raised class="button" style="background:#666; color: white;" @click="submit">SUBMIT</v-btn>
     </v-flex>
     </v-layout>
@@ -56,8 +62,27 @@
         caption: "",
         des: "",
         files: null,
+        chips: "",
          
          tags: [],
+         items: [
+           'Sports',
+           'Education',
+           'Technology',
+           'Politics',
+           'Philosophy',
+           'Science',
+           'Religion'
+           
+         ],
+          customFilter(item, queryText, itemText) {
+              const hasValue = val => val != null ? val : ''
+              const text = hasValue(item.name)
+              const query = hasValue(queryText)
+              return text.toString()
+                .toLowerCase()
+                .indexOf(query.toString().toLowerCase()) > -1
+            },
          attachments: null,
         
          flag: 0
@@ -88,9 +113,11 @@
       },
       submit () {
 
-        console.log(this.caption)
-        console.log(this.des)
-        console.log(this.files)
+        console.log(this.chips)
+
+        // console.log(this.caption)
+        // console.log(this.des)
+        // console.log(this.files)
 
         this.attachments = {
           files: this.files,
@@ -98,11 +125,18 @@
           des: this.des,
           tags: this.tags
         }
-        // console.log(this.attachments)
 
+        let data = new FormData();
+        // console.log(this.attachments)
+            for (const key of Object.keys(this.attachments)) {
+                // console.log(key, this.form[key])
+                data.append(key, this.attachments[key]);
+                // console.log(data)NPM RUN DEV;
+              }
+              console.log(data)
 
         //post request to icy's node on cloud 
-        axios.post('http://jsonplaceholder.typicode.com/posts', this.attachments)
+        axios.post('http://jsonplaceholder.typicode.com/posts', data)
         .then(response => {
           console.log(response)
         })

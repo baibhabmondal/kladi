@@ -11,8 +11,17 @@ app = Flask(__name__,
             template_folder = './dist') 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.'. 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/api/upload')
-def index():
-    return render_template('index.html')
+def upload():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return 'OK'
+    else
+        return 'FAIL'
 
 app.run()

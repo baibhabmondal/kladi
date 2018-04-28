@@ -1,1 +1,4 @@
 .env/
+.front/node_modules/
+.dist/
+

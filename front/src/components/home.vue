@@ -10,7 +10,7 @@
                   <v-flex xs12>
                     <div style="padding:30px;">
 
-                      <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                      <a :href="heading.url" class="headline1">{{ heading.title }}</a>
                       <div>{{ heading.description }}</div>
                     </div>
                   </v-flex>
@@ -30,7 +30,7 @@
                   <v-flex xs12>
                     <div style="padding:30px;">
                       
-                      <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                      <a href="heading.url" class="headline1">{{ heading.title }}</a>
                       <div>{{ heading.description }}</div>
                     </div>
                   </v-flex>
@@ -50,7 +50,7 @@
                 <v-flex xs12>
                   <div style="padding:30px;">
 
-                    <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                    <a  href="heading[i].url" class="headline1">{{ heading.title }}</a>
                     <div>{{ heading.description }}</div>
                   </div>
                 </v-flex>
@@ -76,36 +76,56 @@
   headings:[
        {
         image1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
-         title: 'SCIENCE',
+         title: '',
+         url:'http://localhost:6666/upload'
+       },
+       {
+         image1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
+         title: '',
+        url: "http://localhost:7777/upload"
+       },
+      {
+        image1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
+         title: '',
          url:''
        },
        {
          image1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
-         title: 'POLITICS',
+         title: '',
         url: ''
-       },
-       {
-        image1:'https://beta.techcrunch.com/wp-content/uploads/2017/10/explore-feed_preview.jpeg?w=680',
-         title: 'SCIENCE',
-          url: ''
-       },
-         {
-            image1: 'http://firedove.tech/wp-content/uploads/2017/08/cropped-christopher-gower-291246.jpg',
-            title: 'POLITICS  ',
-            url: ''
-          }
-      ]
+       }
+
+             ]
       }
     },
    created(){
+     var that = this
       axios.get(`http://localhost:5000/api/nodes/links`)
       .then(response=>{
       //  this.headings.title=response.data;
       console.log(typeof(response.data))
      var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
-     console.log(array[0])
+     console.log(array)
+     for(var i=0;i<array.length;i++){
+       that.headings[i].title=array[i]
+     }
             })
-    }
+    ,
+          axios.get(`http://localhost:5000/api/nodes/values`)
+      .then(response=>{
+      //  this.headings.title=response.data;
+      for(let i in response){
+        that.headings[i].url=response[i]
+      }
+    //  var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
+    //  console.log(array)
+    //  for(var i=0;i<array.length;i++){
+      //  that.headings[i].title=array[i]
+    //  }
+            })
+
+ }
+ 
     }
   
 </script>

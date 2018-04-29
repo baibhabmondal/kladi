@@ -185,16 +185,16 @@
         // console.log(this.attachments)
             // for (const key of Object.keys(this.attachments)) {
                 // console.log(key, this.form[key])
-                data.append("myfile", this.files);
-                data.append("des", this.attachments.des);
-                data.append("tags",JSON.stringify(this.chips));
+                this.data.append("myfile", this.files);
+                this.data.append("des", this.attachments.des);
+                this.data.append("tags",JSON.stringify(this.chips));
 
                 // console.log(data)NPM RUN DEV;
               // }
-              console.log(data)
+              console.log(this.data)
 
         //post request to icy's node on cloud 
-        axios.post('http://localhost:5000/api/upload', data,{headers:{'Content-Type':'multipart/form-data'}})
+        axios.post('http://localhost:5000/api/upload', this.data,{headers:{'Content-Type':'multipart/form-data'}})
         .then(response => {
           console.log('response...')
           console.log(response)

@@ -16,13 +16,8 @@
         </v-flex>
       <v-spacer></v-spacer>
       <router-link to="/post">
-<<<<<<< HEAD
-      <v-btn depressed flat fab >
-       <i class="material-icons" style="font-size:30px;"> add_circle_outline</i>
-=======
-      <v-btn icon >
-       <i class="material-icons" style="font-size:50px;"> add</i>
->>>>>>> origin/master
+      <v-btn fab small depressed outline dark color="teal darken-4">
+       <i class="material-icons" dark style="font-size:28px;"> add</i>
       </v-btn>
       </router-link>
     </v-toolbar>

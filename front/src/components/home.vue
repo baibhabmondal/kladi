@@ -72,6 +72,7 @@
   export default {
     data() {
       return {
+        errors: [], 
   headings:[
        {
         image1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
@@ -97,16 +98,13 @@
       }
     },
    created(){
-      axios.get(`http://jsonplaceholder.typicode.com/posts`)
+      axios.get(`http://localhost:5000/api/nodes/links`)
       .then(response=>{
-        this.headings.title=response.data;
-         this.headings.url = response.data;
-        console.log(this.headings.title)
-    
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+      //  this.headings.title=response.data;
+      console.log(typeof(response.data))
+     var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
+     console.log(array[0])
+            })
     }
     }
   

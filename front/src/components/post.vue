@@ -83,6 +83,7 @@
     name: 'post',
     data () {
       return {
+        data: new FormData(),
         profile: true,
         profileLink: "",
         caption: "",
@@ -142,33 +143,33 @@
       },
       submit () {
 
-        console.log(this.chips)
-
-        // console.log(this.caption)
-        // console.log(this.des)
-        // console.log(this.files)
 
         this.attachments = {
           files: this.files,
           profile: this.profileLink,
           
           des: this.des,
-          tags: this.tags
+          tags: this.chips
         }
         console.log(this.attachments)
 
-        let data = new FormData();
+        
         // console.log(this.attachments)
             for (const key of Object.keys(this.attachments)) {
-                // console.log(key, this.form[key])
-                data.append(key, this.attachments[key]);
+                // console.log(key)
+                this.data.append(key, this.attachments[key]);
                 // console.log(data)NPM RUN DEV;
               }
-              console.log(data)
+                
+              console.log('data.Values()....')
+              for (var value of this.data.values()) {
+                  console.log(value);
+                }
 
         //post request to icy's node on cloud 
-        axios.post('http://localhost:5000/api/upload', data)
+        axios.post('http://localhost:5000/api/upload', this.data)
         .then(response => {
+          console.log('response...')
           console.log(response)
         })
         .catch()

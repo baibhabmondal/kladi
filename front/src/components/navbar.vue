@@ -7,8 +7,8 @@
       
       <v-spacer></v-spacer>
       <router-link to="/post">
-      <v-btn icon >
-       <i class="material-icons" style="font-size:45px;"> add_circle</i>
+      <v-btn depressed flat fab >
+       <i class="material-icons" style="font-size:30px;"> add_circle_outline</i>
       </v-btn>
       </router-link>
     </v-toolbar>

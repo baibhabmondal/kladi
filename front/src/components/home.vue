@@ -113,13 +113,6 @@
    created(){
       axios.get(`http://localhost:5000/api/nodes/links`)
       .then(response=>{
-<<<<<<< HEAD
-      //  this.headings.title=response.data;
-      console.log(typeof(response.data))
-     var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
-     console.log(array[0])
-            })
-=======
         this.headings.title=response.data;
          this.headings.url = response.data;
         console.log(this.headings.title)
@@ -128,7 +121,6 @@
       .catch(e => {
         this.errors.push(e)
       })
->>>>>>> origin/home
     }
     }
   

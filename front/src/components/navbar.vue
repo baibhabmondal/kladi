@@ -16,8 +16,8 @@
         </v-flex>
       <v-spacer></v-spacer>
       <router-link to="/post">
-      <v-btn icon >
-       <i class="material-icons" style="font-size:50px;"> add</i>
+      <v-btn fab small depressed outline dark color="teal darken-4">
+       <i class="material-icons" dark style="font-size:28px;"> add</i>
       </v-btn>
       </router-link>
     </v-toolbar>

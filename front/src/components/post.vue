@@ -88,8 +88,8 @@
         profileLink: "",
         caption: "",
         des: "",
-        files: null,
-        chips: "",
+        files: '',
+        chips: [],
         errors: [],
         posts: null,
          
@@ -155,6 +155,7 @@
 
         
         // console.log(this.attachments)
+<<<<<<< HEAD
             for (const key of Object.keys(this.attachments)) {
                 // console.log(key)
                 this.data.append(key, this.attachments[key]);
@@ -168,6 +169,20 @@
 
         //post request to icy's node on cloud 
         axios.post('http://localhost:5000/api/upload', this.data)
+=======
+            // for (const key of Object.keys(this.attachments)) {
+                // console.log(key, this.form[key])
+                data.append("myfile", this.files);
+                data.append("des", this.attachments.des);
+                data.append("tags",JSON.stringify(this.chips));
+
+                // console.log(data)NPM RUN DEV;
+              // }
+              console.log(data)
+
+        //post request to icy's node on cloud 
+        axios.post('http://localhost:5000/api/upload', data,{headers:{'Content-Type':'multipart/form-data'}})
+>>>>>>> origin/master
         .then(response => {
           console.log('response...')
           console.log(response)

@@ -41,8 +41,9 @@ def upload():
     #     files.save(request.files['file'])
     #     shutil.move('kladi/files', 'dist/uploads') 
     #     return 'OK'
-    data = request.form['']
-    print(data)
+    des = request.form['des']
+    tags = request.form['tags']
+    f = request.form['myfile']
     return 'OK'
 
 # fetches url 

@@ -1,44 +1,31 @@
 <template>
-<v-app>
-      <v-container fluid grid-list-lg>
-        <v-layout row wrap>
-          <v-flex lg5 offset-lg4 text-xs-left>
-            
-           <div class="wrap">
-   <div class="search">
-      <input type="text" class="searchTerm" placeholder="What are you looking for?">
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
-   </div>
-</div>
-            
-          </v-flex>
-        </v-layout>
-      <v-layout row wrap>
-        <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
-          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
-            <v-container fluid grid-list-lg>
-              <v-layout row>
-                <v-flex xs12>
-                  <div style="padding:30px">
-                    
-                    <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
-                    <div>{{ heading.description }}</div>
-                  </div>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-card>
 
-        </v-flex>
+      <v-container   grid-list-lg>
+      
+      <v-layout row wrap >
+          <v-flex lg3 v-for="(heading,i) in headings" :key="i" mt-4 >
+            <v-card class="white--text" v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+              <v-container fluid grid-list-lg class="body">
+                <v-layout row>
+                  <v-flex xs12>
+                    <div style="padding:30px;">
+
+                      <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
+                      <div>{{ heading.description }}</div>
+                    </div>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card>
+
+          </v-flex>
 
       </v-layout>
         
         <v-layout row wrap >
           <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4 >
             <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
-              <v-container fluid grid-list-lg>
+              <v-container fluid grid-list-lg  class="body">
                 <v-layout row>
                   <v-flex xs12>
                     <div style="padding:30px;">
@@ -58,7 +45,7 @@
       <v-layout row wrap>
         <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
           <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
-            <v-container fluid grid-list-lg>
+            <v-container fluid grid-list-lg  class="body">
               <v-layout row>
                 <v-flex xs12>
                   <div style="padding:30px;">
@@ -77,7 +64,7 @@
         
       </v-container>
      
-</v-app>
+
 </template>
 
 <script>
@@ -130,27 +117,20 @@ a{
   color:white;
 }
 .white--text{
-  background-color:#006064;
-  font-family: 'Vollkorn', serif;
+  background-color:rgb(0, 96, 100);
+ font-family: 'Source Sans Pro', sans-serif;
   border-radius:7px;
+  width:95%;
+}
+.body:hover{
+  background:green;
+  opacity:0.7
 }
 .headline1{
   font-size:40px;
 
 }
 
-.search{
-  border:2px solid #595961;
-  border-radius:25px;
-  padding:10px;
   
-}
-
-
-.searchTerm {
-  
-  width: 95%;
-  
-}
 </style>
 

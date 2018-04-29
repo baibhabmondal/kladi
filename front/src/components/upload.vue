@@ -101,6 +101,7 @@
         .then(response => {
           this.headings.title = response.data;
           this.headings.url = response.data;
+          this.headings.description = response.data;
           console.log(this.headings.title)
 
         })

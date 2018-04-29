@@ -87,8 +87,8 @@
         profileLink: "",
         caption: "",
         des: "",
-        files: null,
-        chips: "",
+        files: '',
+        chips: [],
         errors: [],
         posts: null,
          
@@ -153,21 +153,24 @@
           profile: this.profileLink,
           
           des: this.des,
-          tags: this.tags
+          tags: this.chips
         }
         console.log(this.attachments)
 
         let data = new FormData();
         // console.log(this.attachments)
-            for (const key of Object.keys(this.attachments)) {
+            // for (const key of Object.keys(this.attachments)) {
                 // console.log(key, this.form[key])
-                data.append(key, this.attachments[key]);
+                data.append("myfile", this.files);
+                data.append("des", this.attachments.des);
+                data.append("tags",JSON.stringify(this.chips));
+
                 // console.log(data)NPM RUN DEV;
-              }
+              // }
               console.log(data)
 
         //post request to icy's node on cloud 
-        axios.post('http://localhost:5000/api/upload', data)
+        axios.post('http://localhost:5000/api/upload', data,{headers:{'Content-Type':'multipart/form-data'}})
         .then(response => {
           console.log(response)
         })

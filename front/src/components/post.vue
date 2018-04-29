@@ -1,15 +1,17 @@
 <template>
   <div>
     <v-app>
-      <h1>INDIVIDUAL POST PAGE</h1>
-      <v-container>
+      <v-layout row wrap>
+      <v-flex offset-lg2 lg8>
+      <v-container color="blue-grey lighten-4" mt-4 mb-4 class="box">
+        <!-- <h1 class="heading">UPLOAD YOUR CONTENTS</h1> -->
         <v-layout row wrap>
           <!-- <v-flex offset-lg3 lg3>
     <v-btn raised class="button" style="background:#666; color: white; " @click="onPickFile">UPLOAD</v-btn>
     </v-flex> -->
     <v-flex offset-lg3 lg6>
    <div >
-   <v-btn raised class="button" style="background:#666; color: white; " @click="onPickFile">UPLOAD</v-btn>
+   <v-btn large raised color="teal darken-4"  class="button" style="background:#666; color: white; " @click="onPickFile">UPLOAD</v-btn>
     <input type="file" id="attachments" style="display: none;" ref="file" class="input-file" @change="uploadFieldChange($event)">
    
     </div>
@@ -18,7 +20,7 @@
     </v-layout>
     <v-layout row wrap>
       <v-flex offset-lg3 lg6>
-        <div v-if="flag">
+        <div v-if="flag" class="remove">
           <span>{{ files.name + ' (' + Number((files.size / 1024 / 1024).toFixed(1)) + 'MB)'}}</span>
           <span @click="removeAttachment($event)"><button>Remove</button></span>
         </div>
@@ -32,35 +34,37 @@
     </v-layout> -->
     <v-layout row wrap>
        <v-flex offset-lg3 lg6>
-        <v-text-field  v-model="des" label="DESCRIPTION" multi-line></v-text-field>
+        <v-text-field color="teal darken-4" box  v-model="des" label="DESCRIPTION" textarea></v-text-field>
       
        </v-flex>
     </v-layout>
     <v-layout row wrap>
        <v-flex offset-lg3 lg6>
-        <v-select :items="items" no-data-text="No nodes" hint="Tags (max 3)" persistent-hint ref="tags" v-model="chips" autocomplete chips clearable multiple deletable-chips hide-selected>TAGS</v-select>
+        <v-select :items="items" color="teal darken-4" outline no-data-text="No nodes" hint="Tags (max 3)" persistent-hint ref="tags" v-model="chips" autocomplete chips clearable multiple deletable-chips hide-selected>TAGS</v-select>
       
        </v-flex>
     </v-layout>
+    <v-radio-group  v-model="profileLink">
     <v-layout row wrap mt-3>
       <v-flex offset-lg3 lg1>
-        <input type="radio" name="profile" value="true" v-model="profile">
+        <v-radio color="teal darken-4" value="anonym" class="radio" name="profile"></v-radio>
       </v-flex>
       <v-flex lg4>
-        <p>Upload Anonymously</p>
+        <p class="options">Upload Anonymously</p>
       </v-flex>
     </v-layout>
     <v-layout row wrap mt-2>
       <v-flex offset-lg3 lg1>
-        <input type="radio" name="profile"  @change="profile=!profile">
+        <v-radio value="identifier" color="teal darken-4" class="radio" name="profile"></v-radio>
       </v-flex>
       <v-flex lg4>
-        <p>Get Credits</p>
+        <p  class="options">Identifiers</p>
       </v-flex>
     </v-layout>
-      <v-layout row wrap mt-2 v-if="!profile">
+    </v-radio-group>
+      <v-layout row wrap mt-2 v-if="profileLink=='identifier'">
         <v-flex offset-lg3 lg6>
-        <v-text-field label="Profile Link" v-model="profileLink">
+        <v-text-field color="teal darken-4" box label="Profile Link">
 
         </v-text-field>
         </v-flex>
@@ -68,10 +72,12 @@
       </v-layout>
     <v-layout row wrap>
       <v-flex offset-lg3 lg6>
-      <v-btn raised class="button" style="background:#666; color: white;" @click="submit">SUBMIT</v-btn>
+      <v-btn  raised large block color="teal darken-4" class="button" style="background:#666; color: white;" @click="submit">SUBMIT</v-btn>
     </v-flex>
     </v-layout>
   </v-container>
+  </v-flex>
+  </v-layout>
   </v-app>
   </div>
 </template>
@@ -85,7 +91,7 @@
       return {
         data: new FormData(),
         profile: true,
-        profileLink: "",
+        profileLink: "anonym",
         caption: "",
         des: "",
         files: '',
@@ -155,21 +161,6 @@
 
         
         // console.log(this.attachments)
-<<<<<<< HEAD
-            for (const key of Object.keys(this.attachments)) {
-                // console.log(key)
-                this.data.append(key, this.attachments[key]);
-                // console.log(data)NPM RUN DEV;
-              }
-                
-              console.log('data.Values()....')
-              for (var value of this.data.values()) {
-                  console.log(value);
-                }
-
-        //post request to icy's node on cloud 
-        axios.post('http://localhost:5000/api/upload', this.data)
-=======
             // for (const key of Object.keys(this.attachments)) {
                 // console.log(key, this.form[key])
                 data.append("myfile", this.files);
@@ -182,7 +173,6 @@
 
         //post request to icy's node on cloud 
         axios.post('http://localhost:5000/api/upload', data,{headers:{'Content-Type':'multipart/form-data'}})
->>>>>>> origin/master
         .then(response => {
           console.log('response...')
           console.log(response)
@@ -211,10 +201,47 @@
 
 <style scoped>
    .button{
-    width:80px;
-    height:30px;
-    margin-top:7%;
+    /* width:80px;
+    height:30px; */
+    margin-top:2%;
+    font-size: 28px;
   
+  }
+  .box{
+    /* border: 2px solid #37474F; */
+     border-radius: 10px;
+     -webkit-box-shadow: -1px 1px 6px 0px rgba(0,77,64,1);
+-moz-box-shadow: -1px 1px 6px 0px rgba(0,77,64,1);
+box-shadow: -1px 1px 6px 0px rgba(0,77,64,1);
+ background: #E3F2FD;
+
+  }
+  #app{
+    background: #B2EBF2;
+  }
+  .heading{
+    margin-top: 2%;
+  }
+
+  .remove{
+    margin: 1%;
+    font-size: 16px;
+    /* font-family: 'helvetica'; */
+  }
+  .remove span:last-child{
+    margin-left: 1%;
+    font-size: 22px;
+  }
+
+  .options{
+    font-size: 16px;
+    font-weight: 600;
+
+  }
+
+  .radio{
+    font-size: 22px;
+
   }
 
   

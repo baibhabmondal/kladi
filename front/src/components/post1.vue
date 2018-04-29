@@ -57,9 +57,19 @@
                 files: ''
             }
         },
-        methods: {
+        created() {
+                axios.get(`http://jsonplaceholder.typicode.com/posts`)
+                    .then(response => {
+                        this.tags = response.data;
+                        this.description = response.data;
+                        this.files = response.data;
+                        console.log(this.headings.title)
 
-        }
+                    })
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+            }
     }
 
 </script>

@@ -10,8 +10,8 @@
               <v-flex xs12>
                 <div style="padding:30px 0px">
 
-                  <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
-                  <div style="padding:30px 20px">{{ heading.description }}</div>
+                  <router-link to="/post1" class="headline1">{{ heading.title }}</router-link>
+                  <div style="padding:30px 20px;color:gray">{{ heading.description }}</div>
                 </div>
               </v-flex>
             </v-layout>
@@ -30,8 +30,8 @@
               <v-flex xs12>
                 <div style="padding:30px 0px">
 
-                  <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
-                  <div style="padding:30px 20px">{{ heading.description }}</div>
+                  <router-link to="/post1" class="headline1">{{ heading.title }}</router-link>
+                  <div style="padding:30px 20px;color:gray">{{ heading.description }}</div>
                 </div>
               </v-flex>
             </v-layout>
@@ -50,8 +50,8 @@
               <v-flex xs12>
                 <div style="padding:30px 0px">
 
-                  <router-link to="/upload" class="headline1">{{ heading.title }}</router-link>
-                  <div style="padding:30px 20px">{{ heading.description }}</div>
+                  <router-link to="/post1" class="headline1">{{ heading.title }}</router-link>
+                  <div style="padding:30px 20px;color:gray">{{ heading.description }}</div>
                 </div>
               </v-flex>
             </v-layout>
@@ -115,23 +115,29 @@
 <style scoped>
   a {
     text-decoration: none;
-    color: white;
+    color: black;
   }
 
   .white--text {
-    background-color: #006064;
+  
+       background: #EFF3B7;
     font-family: 'Source Sans Pro', sans-serif;
     border-radius: 2px;
     width: 95%;
+  
   }
 
   .body:hover {
-    background: blue;
-    opacity: 0.7
+    background: #CBCBDF;
+    opacity: 0.5;
+    color:white;
+    
   }
+  
 
   .headline1 {
     font-size: 40px;
   
   }
+  
 </style>

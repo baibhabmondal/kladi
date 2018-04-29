@@ -53,7 +53,7 @@
         data() {
             return {
                 tags: 'PHYSICS',
-                description: '',
+                description: 'This Specialization builds on the success of the Python for Everybody course and will introduce fundamental programming concepts.',
                 files: ''
             }
         },
@@ -75,11 +75,18 @@
 </script>
 <style scoped>
     .outer {
-        border: 1px solid black;
+        border: 2px solid #A39A9A;
+        border-radius:5px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size:18px;
     }
 
     h2,
     h3 {
-        padding: 20px 0 20px 0;
+        padding: 20px 0 20px 0px
+        
+    }
+    hr{
+        margin-top:3%;
     }
 </style>

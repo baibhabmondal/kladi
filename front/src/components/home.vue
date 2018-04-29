@@ -115,7 +115,7 @@ a{
   color:white;
 }
 .white--text{
-  background-color:rgb(0, 96, 100);
+  background-color:rgb(43, 174, 179);
  font-family: 'Source Sans Pro', sans-serif;
   border-radius:7px;
   width:95%;

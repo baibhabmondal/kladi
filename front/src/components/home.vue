@@ -17,7 +17,7 @@
         </v-layout>
       <v-layout row wrap>
         <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
-          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
             <v-container fluid grid-list-lg>
               <v-layout row>
                 <v-flex xs12>
@@ -37,7 +37,7 @@
         
         <v-layout row wrap >
           <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4 >
-            <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+            <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
               <v-container fluid grid-list-lg>
                 <v-layout row>
                   <v-flex xs12>
@@ -57,7 +57,7 @@
      
       <v-layout row wrap>
         <v-flex xs3 v-for="(heading,i) in headings" :key="i" mt-4>
-          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.url1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
+          <v-card class="white--text"  v-bind:style="{ backgroundImage: 'url(' + heading.image1 + ')' }" style="opacity:0.8;background-size:cover;height:100%;">
             <v-container fluid grid-list-lg>
               <v-layout row>
                 <v-flex xs12>
@@ -85,40 +85,50 @@
   export default {
     data() {
       return {
+        errors: [], 
   headings:[
        {
-        url1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
-         title: 'PHYSICS',
-         description:'Latest topics are covered'
+        image1:'http://bfsi.eletsonline.com/wp-content/uploads/2018/02/Technology-based-lending.jpg',
+         title: 'SCIENCE',
+         url:''
        },
        {
-         url1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
-         title: 'CRICKET',
-         description: 'Latest topics are covered'
+         image1:'https://www.feedsyndicate.com/wp-content/uploads/SportsNews.jpg',
+         title: 'POLITICS',
+        url: ''
        },
        {
-        url1:'https://beta.techcrunch.com/wp-content/uploads/2017/10/explore-feed_preview.jpeg?w=680',
-         title: 'SPACE',
-          description: 'Latest topics are covered'
+        image1:'https://beta.techcrunch.com/wp-content/uploads/2017/10/explore-feed_preview.jpeg?w=680',
+         title: 'SCIENCE',
+          url: ''
        },
          {
-            url1: 'http://firedove.tech/wp-content/uploads/2017/08/cropped-christopher-gower-291246.jpg',
-            title: 'JAVA  ',
-            description: 'Latest topics are covered'
+            image1: 'http://firedove.tech/wp-content/uploads/2017/08/cropped-christopher-gower-291246.jpg',
+            title: 'POLITICS  ',
+            url: ''
           }
       ]
       }
     },
    created(){
-      axios.get(`http://jsonplaceholder.typicode.com/posts`)
+      axios.get(`http://localhost:5000/api/nodes/links`)
       .then(response=>{
+<<<<<<< HEAD
+      //  this.headings.title=response.data;
+      console.log(typeof(response.data))
+     var array = response.data.replace("'", "").substr(1).slice(0,-1).replace("'", "").split(",")
+     console.log(array[0])
+            })
+=======
         this.headings.title=response.data;
+         this.headings.url = response.data;
         console.log(this.headings.title)
     
       })
       .catch(e => {
         this.errors.push(e)
       })
+>>>>>>> origin/home
     }
     }
   

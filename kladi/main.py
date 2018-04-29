@@ -4,6 +4,7 @@ import shutil
 import requests
 import redis
 import multipart as mp
+import json
 from multipart import tob
 from flask import Flask, render_template, request, abort
 from werkzeug.utils import secure_filename
@@ -40,7 +41,7 @@ def upload():
     #     files.save(request.files['file'])
     #     shutil.move('kladi/files', 'dist/uploads') 
     #     return 'OK'
-    data = request.form['data']
+    data = request.form['']
     print(data)
     return 'OK'
 
@@ -52,7 +53,12 @@ def is_node(node_name):
     else:
         abort(404)
 
-#@app.route('/api/nodes')
+@app.route('/api/nodes/links/')
+def fetch_links():
+    a = []
+    for i in r.keys():
+        a.append(i.decode('utf-8'))
+    return str(a)
 
 
 if __name__ == '__main__':
